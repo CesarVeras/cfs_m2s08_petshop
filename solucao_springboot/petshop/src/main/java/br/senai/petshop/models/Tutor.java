@@ -1,6 +1,5 @@
 package br.senai.petshop.models;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class Tutor {

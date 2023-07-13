@@ -4,7 +4,6 @@ import br.senai.petshop.models.Tutor;
 import br.senai.petshop.repositories.TutorRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

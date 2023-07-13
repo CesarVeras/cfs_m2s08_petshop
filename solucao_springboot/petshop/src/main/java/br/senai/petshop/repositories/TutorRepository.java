@@ -2,7 +2,6 @@ package br.senai.petshop.repositories;
 
 import br.senai.petshop.models.Tutor;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
