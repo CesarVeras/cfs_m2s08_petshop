@@ -20,7 +20,7 @@ public class TutorController {
 
 	@GetMapping
 	public List<Tutor> getTutor() {
-		return TutorService.listarTutores();
+		return tutorService.listarTutores();
 	}
 
 	@GetMapping("/{idTutor}")
@@ -39,16 +39,16 @@ public class TutorController {
 
 	@PostMapping
 	public void addTutor(@RequestBody Tutor tutor) {
-		TutorService.cadastrarTutor(tutor);
+		tutorService.cadastrarTutor(tutor);
 	}
 
 	@PutMapping("/{id}")
 	public void updateTutor(@PathVariable Long id, @RequestBody Tutor tutor) {
-		TutorService.editarTutor(tutor);
+		tutorService.editarTutor(tutor);
 	}
 
 	@DeleteMapping("/{id}")
 	public void deleteTutor(@PathVariable Long id) {
-		TutorService.removerTutor(id);
+		tutorService.removerTutor(id);
 	}
 }

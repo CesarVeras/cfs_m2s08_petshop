@@ -11,55 +11,55 @@ import java.util.List;
 @RequestMapping("/pets")
 public class PetController {
 
-    @Autowired
-    private final PetService petService;
+	@Autowired
+	private final PetService petService;
 
-    public PetController(PetService petService) {
-        this.petService = petService;
-    }
+	public PetController(PetService petService) {
+		this.petService = petService;
+	}
 
-    @GetMapping
-    public List<Pet> getPets(@RequestParam(required = false) String especie) {
-        if (especie != null && especie.length() > 0) {
-            return PetService.listarPetsPorEspecie(especie);
-        } else {
-            return PetService.listarPets();
-        }
-    }
+	@GetMapping
+	public List<Pet> getPets(@RequestParam(required = false) String especie) {
+		if (especie != null && especie.length() > 0) {
+			return petService.listarPetsPorEspecie(especie);
+		} else {
+			return petService.listarPets();
+		}
+	}
 
-    @GetMapping("/{idPet}")
-    public Pet getPet(@PathVariable("idPet") Long id) {
-        List<Pet> pets = PetService.listarPets();
-        Pet pet = null;
+	@GetMapping("/{idPet}")
+	public Pet getPet(@PathVariable("idPet") Long id) {
+		List<Pet> pets = petService.listarPets();
+		Pet pet = null;
 
-        for (Pet p : pets) {
-            if (p.getId().equals(id)) {
-                pet = p;
-                break;
-            }
-        }
+		for (Pet p : pets) {
+			if (p.getId().equals(id)) {
+				pet = p;
+				break;
+			}
+		}
 
-        return pet;
-    }
+		return pet;
+	}
 
-    @PostMapping
-    public void addPet(@RequestBody Pet pet) {
-        PetService.cadastrarPet(pet);
-    }
+	@PostMapping
+	public void addPet(@RequestBody Pet pet) {
+		petService.cadastrarPet(pet);
+	}
 
-    @PutMapping("/{id}")
-    public void updatePet(@RequestBody Pet pet) {
-        PetService.editarPet(pet);
-    }
+	@PutMapping("/{id}")
+	public void updatePet(@RequestBody Pet pet) {
+		petService.editarPet(pet);
+	}
 
-    @DeleteMapping("/{id}")
-    public String deletePet(@PathVariable Long id) {
-        PetService.removerPet(id);
-        return "Pet removido!";
-    }
+	@DeleteMapping("/{id}")
+	public String deletePet(@PathVariable Long id) {
+		petService.removerPet(id);
+		return "Pet removido!";
+	}
 
-    @PutMapping("/{idPet}/tutor/{idTutor}")
-    public void addTutorToPet(@PathVariable Long idPet, @PathVariable Long idTutor) {
-        PetService.adicionarTutorAoPet(idPet, idTutor);
-    }
+	@PutMapping("/{idPet}/tutor/{idTutor}")
+	public void addTutorToPet(@PathVariable Long idPet, @PathVariable Long idTutor) {
+		petService.adicionarTutorAoPet(idPet, idTutor);
+	}
 }
