@@ -1,9 +1,13 @@
 package br.senai.petshop.services;
 
 import br.senai.petshop.models.Tutor;
-import br.senai.petshop.repositories.PetRepository;
+import br.senai.petshop.repositories.repository;
 import br.senai.petshop.models.Pet;
+import br.senai.petshop.repositories.repository;
+import br.senai.petshop.repositories.PetRepository;
 import br.senai.petshop.repositories.TutorRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,18 +16,21 @@ import java.util.List;
 @Service
 public class PetService {
 
+	@Autowired
+	private PetRepository repository;
+
 	public List<Pet> listarPets() {
-		return PetRepository.getPets();
+		return repository.getPets();
 	}
 
 	public void cadastrarPet(Pet pet) {
 		if (pet == null)
 			return;
-		PetRepository.addPet(pet);
+		repository.addPet(pet);
 	}
 
 	public void editarPet(Pet pet) {
-		List<Pet> pets = PetRepository.getPets();
+		List<Pet> pets = repository.getPets();
 
 		Pet petParaAlterar = null;
 
@@ -36,13 +43,13 @@ public class PetService {
 
 		if (petParaAlterar == null)
 			return;
-		PetRepository.updatePet(
+		repository.updatePet(
 				petParaAlterar, pet.getNome(), pet.getEspecie(), pet.getRaca(), pet.getCor(), pet.getPeso(),
 				pet.getDataNascimento());
 	}
 
 	public void removerPet(Long id) {
-		List<Pet> pets = PetRepository.getPets();
+		List<Pet> pets = repository.getPets();
 		Pet petParaRemover = null;
 
 		for (Pet p : pets) {
@@ -53,11 +60,11 @@ public class PetService {
 		}
 		if (petParaRemover == null)
 			return;
-		PetRepository.removePet(petParaRemover);
+		repository.removePet(petParaRemover);
 	}
 
 	public List<Pet> listarPetsPorEspecie(String especie) {
-		List<Pet> pets = PetRepository.getPets();
+		List<Pet> pets = repository.getPets();
 		List<Pet> petsFiltrados = new ArrayList<>();
 
 		for (Pet p : pets) {
@@ -70,7 +77,7 @@ public class PetService {
 	}
 
 	public void adicionarTutorAoPet(Long idPet, Long idTutor) {
-		List<Pet> pets = PetRepository.getPets();
+		List<Pet> pets = repository.getPets();
 		List<Tutor> tutores = TutorRepository.getTutores();
 
 		Pet pet = null;
@@ -96,6 +103,6 @@ public class PetService {
 		if (tutor == null)
 			return;
 
-		PetRepository.updateTutor(pet, tutor);
+		repository.updateTutor(pet, tutor);
 	}
 }

@@ -2,6 +2,7 @@ package br.senai.petshop.services;
 
 import br.senai.petshop.models.Tutor;
 import br.senai.petshop.repositories.TutorRepository;
+import br.senai.petshop.repositories.repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,18 +10,20 @@ import java.util.List;
 @Service
 public class TutorService {
 
+	private TutorRepository repository;
+
 	public List<Tutor> listarTutores() {
-		return TutorRepository.getTutores();
+		return repository.getTutores();
 	}
 
 	public void cadastrarTutor(Tutor tutor) {
 		if (tutor == null)
 			return;
-		TutorRepository.addTutor(tutor);
+		repository.addTutor(tutor);
 	}
 
 	public void editarTutor(Tutor tutor) {
-		List<Tutor> tutores = TutorRepository.getTutores();
+		List<Tutor> tutores = repository.getTutores();
 
 		Tutor tutorParaAlterar = null;
 
@@ -33,13 +36,13 @@ public class TutorService {
 
 		if (tutorParaAlterar == null)
 			return;
-		TutorRepository.updateTutor(
+		repository.updateTutor(
 				tutorParaAlterar, tutor.getCpf(), tutor.getNome(), tutor.getTelefone(), tutor.getEmail(),
 				tutor.getEndereco());
 	}
 
 	public void removerTutor(Long id) {
-		List<Tutor> tutores = TutorRepository.getTutores();
+		List<Tutor> tutores = repository.getTutores();
 		Tutor tutorParaRemover = null;
 
 		for (Tutor t : tutores) {
@@ -50,6 +53,6 @@ public class TutorService {
 		}
 		if (tutorParaRemover == null)
 			return;
-		TutorRepository.removeTutor(tutorParaRemover);
+		repository.removeTutor(tutorParaRemover);
 	}
 }

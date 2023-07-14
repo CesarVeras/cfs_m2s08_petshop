@@ -7,23 +7,26 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class PetRepository {
 
-    private static Long id = 0L;
-    private static List<Pet> pets = new ArrayList<>();
+    private Long id = 0L;
+    private List<Pet> pets = new ArrayList<>();
 
-    public static List<Pet> getPets() {
+    public List<Pet> getPets() {
         return pets;
     }
 
-    public static void addPet(Pet pet) {
+    public void addPet(Pet pet) {
         if (pet == null) return;
         if (pets.contains(pet)) return;
         pet.setId(++id);
         pets.add(pet);
     }
 
-    public static void updatePet(Pet pet, String nome, String especie, String raca, String cor, float peso, LocalDate dataNascimento) {
+    public void updatePet(Pet pet, String nome, String especie, String raca, String cor, float peso, LocalDate dataNascimento) {
         if (nome != null && !nome.equals(pet.getNome())) pet.setNome(nome);
         if (especie != null && !especie.equals(pet.getEspecie())) pet.setEspecie(especie);
         if (raca != null && !raca.equals(pet.getRaca())) pet.setRaca(raca);
@@ -32,11 +35,11 @@ public class PetRepository {
         if (dataNascimento != null) pet.setDataNascimento(dataNascimento);
     }
 
-    public static void removePet(Pet pet) {
+    public void removePet(Pet pet) {
         pets.remove(pet);
     }
 
-    public static void updateTutor(Pet pet, Tutor tutor) {
+    public void updateTutor(Pet pet, Tutor tutor) {
         pet.setTutor(tutor);
     }
 }
