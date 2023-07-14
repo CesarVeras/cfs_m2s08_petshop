@@ -2,6 +2,8 @@ package br.senai.petshop.services;
 
 import br.senai.petshop.models.Tutor;
 import br.senai.petshop.repositories.TutorRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
 @Service
 public class TutorService {
 
+	@Autowired
 	private TutorRepository repository;
 
 	public List<Tutor> listarTutores() {

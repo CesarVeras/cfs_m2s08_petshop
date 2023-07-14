@@ -17,6 +17,9 @@ public class PetService {
 	@Autowired
 	private PetRepository repository;
 
+	@Autowired
+	private TutorRepository tutorRepository;
+
 	public List<Pet> listarPets() {
 		return repository.getPets();
 	}
@@ -76,7 +79,7 @@ public class PetService {
 
 	public void adicionarTutorAoPet(Long idPet, Long idTutor) {
 		List<Pet> pets = repository.getPets();
-		List<Tutor> tutores = TutorRepository.getTutores();
+		List<Tutor> tutores = tutorRepository.getTutores();
 
 		Pet pet = null;
 		Tutor tutor = null;
