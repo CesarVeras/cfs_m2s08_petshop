@@ -2,7 +2,6 @@ package br.senai.petshop.services;
 
 import br.senai.petshop.models.Tutor;
 import br.senai.petshop.repositories.TutorRepository;
-import br.senai.petshop.repositories.repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

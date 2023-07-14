@@ -1,9 +1,7 @@
 package br.senai.petshop.services;
 
 import br.senai.petshop.models.Tutor;
-import br.senai.petshop.repositories.repository;
 import br.senai.petshop.models.Pet;
-import br.senai.petshop.repositories.repository;
 import br.senai.petshop.repositories.PetRepository;
 import br.senai.petshop.repositories.TutorRepository;
 
